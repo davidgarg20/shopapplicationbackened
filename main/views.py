@@ -8,8 +8,7 @@ from rest_framework.permissions import IsAdminUser
 from django.shortcuts import render, get_object_or_404
 import requests
 import httplib2
-import urllib
-import nexmo
+
 class UserList(generics.ListCreateAPIView):
     queryset=user.objects.all()
     serializer_class = UserSerializer
@@ -94,13 +93,5 @@ def user_auth(request,pk):
     http = httplib2.Http()
     body = {'sender_id':'FSTSMS','message':'This is a test message','language':'english','route':'p','numbers':'8059976498'}
     data = {'otp': 'success'}
-
-    client = nexmo.Client(key='af753d55', secret='De9Ls0AvAZvKInzw')
-
-    client.send_message({
-        'from': 'Vonage SMS API',
-        'to': '918059976498',
-        'text': 'Hello from Vonage',
-    })
 
     return JsonResponse({'status':'false','message':"User Already Exists"}, status=500)
