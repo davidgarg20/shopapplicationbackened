@@ -54,7 +54,7 @@ class OrderDetailList(generics.ListCreateAPIView):
         queryset = orderdetail.objects.all()
         o = self.request.query_params.get('o',None)
         if o is not None:
-            queryset = queryset.filter(orderid=o)
+            queryset = queryset.filter(orderno=o)
             return queryset
         return queryset
 
