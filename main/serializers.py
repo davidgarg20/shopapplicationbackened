@@ -69,11 +69,12 @@ class OrderSerializer(serializers.ModelSerializer):
 class OrderDetailSerializer(serializers.ModelSerializer):
     orderno = serializers.IntegerField()
     itemid = serializers.IntegerField()
+    itemname = serializers.CharField(max_length=100)
     qty = serializers.IntegerField()
     amount = serializers.IntegerField()
     class Meta:
         model = orderdetail
-        fields = ['orderno', 'itemid', 'qty', 'amount']
+        fields = ['orderno', 'itemid','itemname', 'qty', 'amount']
     def create(self, validated_data, **kwargs):
         return orderdetail.objects.create(**validated_data)
 
