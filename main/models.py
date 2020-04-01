@@ -28,6 +28,7 @@ class order(models.Model):
 class orderdetail(models.Model):
     orderno = models.IntegerField()
     itemid = models.IntegerField()
+    itemname = models.CharField(max_length=100)
     qty = models.IntegerField()
     amount = models.IntegerField()
 
