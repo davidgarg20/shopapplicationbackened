@@ -15,8 +15,12 @@ class UserList(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = user.objects.all()
         u = self.request.query_params.get('u',None)
+        o = self.request.query_params.get('o',None)
         if u is not None:
             queryset = queryset.filter(mobileno=u)
+            return queryset
+        if o is not None:
+            queryset = queryset.filter(userid=o)
             return queryset
         return queryset
 
